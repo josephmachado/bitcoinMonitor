@@ -1,0 +1,5 @@
+"exchangeId","name","rank","percentTotalVolume","volumeUsd","tradingPairs","socket","exchangeUrl","updated"
+"binance","Binance",1,"25.44443","12712561147.7913049212358699",650,1,"https://www.binance.com/","1625787943298"
+"zg","ZG.com",2,"13.03445","6512276458.5226475820074930",133,0,"https://api.zg.com/","1625787941554"
+"huobi","Huobi",3,"5.93652","2966009471.8337660651992927",589,1,"https://www.hbg.com/","1625787943276"
+"okex","Okex",4,"4.99990","2498051785.3601278924449889",287,0,"https://www.okex.com/","1625787941641"

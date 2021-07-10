@@ -1,0 +1,38 @@
+version: '3'
+
+services:
+    warehouse:
+      image: postgres:13
+      container_name: warehouse
+      environment:
+        POSTGRES_USER: ${POSTGRES_USER}
+        POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+        POSTGRES_DB: ${POSTGRES_DB}
+      volumes:
+        - ./containers/warehouse:/docker-entrypoint-initdb.d
+      healthcheck:
+        test: ["CMD", "pg_isready", "-U", "${POSTGRES_USER}"]
+        interval: 5s
+        retries: 5
+      restart: always
+      ports:
+        - "5432:5432"
+    pipelinerunner:
+      image: pipelinerunner
+      container_name: pipelinerunner
+      build:
+        context: ./
+        dockerfile: ./containers/pipelinerunner/Dockerfile
+      volumes:
+        - ./:/code
+      environment:
+        WAREHOUSE_USER: ${POSTGRES_USER}
+        WAREHOUSE_PASSWORD: ${POSTGRES_PASSWORD}
+        WAREHOUSE_DB: ${POSTGRES_DB}
+        WAREHOUSE_HOST: ${POSTGRES_HOST}
+        WARREHOUSE_PORT: ${POSTGRES_PORT}
+    dashboard:
+      image: metabase/metabase
+      container_name: dashboard
+      ports:
+        - "3000:3000"

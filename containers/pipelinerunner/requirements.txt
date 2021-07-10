@@ -1,0 +1,10 @@
+psycopg2
+requests
+boto3
+pytest
+pytest-mock
+black
+flake8
+mypy
+types-requests
+isort

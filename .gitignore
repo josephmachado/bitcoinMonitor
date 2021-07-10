@@ -1,0 +1,9 @@
+.mypy*
+
+.pytest*
+
+.devcontainer*
+
+.vscode*
+
+__pycache__*
