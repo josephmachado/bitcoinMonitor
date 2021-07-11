@@ -26,7 +26,3 @@ sudo chmod +x /usr/local/bin/docker-compose
 # add user to docker group
 sudo usermod -aG docker $USER
 newgrp docker
-
-# Unzip repo
-unzip bitcoinmonitor.gzip
-cd bitcoinmonitor/

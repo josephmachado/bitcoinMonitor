@@ -21,11 +21,23 @@ chmod 755 ./deploy_helpers/send_code_to_prod.sh
 # install docker on your Ubuntu EC2 instance
 chmod 755 install_docker.sh
 ./install_docker.sh
+# check if docker and docker compose installed
+docker --version
+docker-compose --version
 
 # start the containers
-cd bitcoinmonitor
+unzip bitcoinmonitor.gzip
+cd bitcoinmonitor/ && cd bitcoinmonitor
 docker-compose down
 docker-compose up --build -d
+```
+
+Give it about 5 min and visit http://{Public IPv4 address}:3000 to access metabase. For the Postgres connection input
+
+```bash
+Host: warehouse
+Database name: finance
+
 ```
 
 ## Create Dashboard
