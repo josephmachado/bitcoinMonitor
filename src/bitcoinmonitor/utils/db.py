@@ -3,7 +3,7 @@ from contextlib import contextmanager
 import psycopg2
 
 
-class WarehouseConnection(object):
+class WarehouseConnection:
     def __init__(
         self, db: str, user: str, password: str, host: str, port: int
     ):
