@@ -1,8 +1,8 @@
 up:
-	docker compose -f docker-compose.yml  up --build -d
+	docker compose --env-file env up --build -d
 
 down: 
-	docker compose -f docker-compose.yml down
+	docker compose down
 
 shell:
 	docker exec -ti pipelinerunner bash

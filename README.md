@@ -6,7 +6,7 @@ The exchange data is pulled every 5 min and loaded into our Postgres datawarehou
 
 ## Setup
 
-1. Set up AWS Cli
+1. Set up AWS cli
 2. Set up EC2
 
 ```bash
@@ -21,23 +21,23 @@ chmod 755 ./deploy_helpers/send_code_to_prod.sh
 # install docker on your Ubuntu EC2 instance
 chmod 755 install_docker.sh
 ./install_docker.sh
-# check if docker and docker compose installed
+# verify that docker and docker compose installed
 docker --version
 docker-compose --version
 
 # start the containers
-unzip bitcoinmonitor.gzip
-cd bitcoinmonitor/ && cd bitcoinmonitor
-docker-compose down
-docker-compose up --build -d
+unzip bitcoinmonitor.gzip && cd bitcoinmonitor/
+docker-compose --env-file env up --build -d
+
+# to spin down containers, use docker-compose down
 ```
 
-Give it about 5 min and visit http://{Public IPv4 address}:3000 to access metabase. For the Postgres connection input
+Give it about 5 min, then visit http://{Public IPv4 address}:3000 to access metabase. For the Postgres connection input
 
 ```bash
 Host: warehouse
 Database name: finance
-
+# the rest is available in the env file
 ```
 
 ## Create Dashboard
