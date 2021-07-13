@@ -1,6 +1,6 @@
 # Bitcoin Monitor
 
-This is an ETL pipeline to pull bitcoin exchange data from [CoinCap API](https://docs.coincap.io/) and load it into our data warehouse.
+This is an ETL pipeline to pull bitcoin exchange data from [CoinCap API](https://docs.coincap.io/) and load it into our data warehouse. For more details check out the blog at https://startdataengineering.com/post/data-engineering-project-to-impress-hiring-managers/
 
 ## Architecture
 
@@ -78,7 +78,7 @@ docker-compose --env-file env up --build -d
 You can spin down your local instance with.
 
 ```bash
-docker-compose down
+make down
 ```
 
 Do not forget to turn off your EC2 instance.
