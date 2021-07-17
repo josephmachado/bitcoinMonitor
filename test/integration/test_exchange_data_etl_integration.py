@@ -10,7 +10,7 @@ from bitcoinmonitor.utils.sde_config import get_warehouse_creds
 
 
 class TestBitcoinMonitor:
-    def teardown_method(self, test_covid_stats_etl_run):
+    def teardown_method(self, test_exchange_data_etl_run):
         with WarehouseConnection(
             **get_warehouse_creds()
         ).managed_cursor() as curr:
@@ -36,7 +36,7 @@ class TestBitcoinMonitor:
             table_data = [dict(r) for r in curr.fetchall()]
         return table_data
 
-    def test_covid_stats_etl_run(self, mocker):
+    def test_exchange_data_etl_run(self, mocker):
         mocker.patch(
             'bitcoinmonitor.exchange_data_etl.get_exchange_data',
             return_value=[
