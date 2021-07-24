@@ -12,12 +12,12 @@ from bitcoinmonitor.utils.sde_config import get_warehouse_creds
 class TestBitcoinMonitor:
     def teardown_method(self, test_exchange_data_etl_run):
         with WarehouseConnection(
-            **get_warehouse_creds()
+            get_warehouse_creds()
         ).managed_cursor() as curr:
             curr.execute("TRUNCATE TABLE bitcoin.exchange;")
 
     def get_exchange_data(self):
-        with WarehouseConnection(**get_warehouse_creds()).managed_cursor(
+        with WarehouseConnection(get_warehouse_creds()).managed_cursor(
             cursor_factory=psycopg2.extras.DictCursor
         ) as curr:
             curr.execute(
