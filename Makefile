@@ -22,7 +22,46 @@ type:
 lint: 
 	docker exec pipelinerunner flake8 /code 
 
-ci: isort format type lint pytest
+ci: isort format type lint warehouse-migration pytest
 
 stop-etl: 
 	docker exec pipelinerunner service cron stop
+
+####################################################################################################################
+# Set up cloud infrastructure
+
+tf-init:
+	terraform -chdir=./terraform init
+
+infra-up:
+	terraform -chdir=./terraform apply
+
+infra-down:
+	terraform -chdir=./terraform destroy
+
+infra-config:
+	terraform -chdir=./terraform output
+
+####################################################################################################################
+# Datawarehouse migration
+
+db-migration:
+	@read -p "Enter migration name:" migration_name; docker exec pipelinerunner yoyo new ./migrations -m "$$migration_name"
+
+warehouse-migration:
+	docker exec pipelinerunner yoyo develop --no-config-file --database postgres://sdeuser:sdepassword1234@warehouse:5432/finance ./migrations
+
+warehouse-rollback:
+	docker exec pipelinerunner yoyo rollback --no-config-file --database postgres://sdeuser:sdepassword1234@warehouse:5432/finance ./migrations
+
+####################################################################################################################
+# Port forwarding to local machine
+
+cloud-metabase:
+	terraform -chdir=./terraform output -raw private_key > private_key.pem && chmod 600 private_key.pem && ssh -o "IdentitiesOnly yes" -i private_key.pem ubuntu@$$(terraform -chdir=./terraform output -raw ec2_public_dns) -N -f -L 3001:$$(terraform -chdir=./terraform output -raw ec2_public_dns):3000 && open http://localhost:3001 && rm private_key.pem
+
+####################################################################################################################
+# Helpers
+
+ssh-ec2:
+	terraform -chdir=./terraform output -raw private_key > private_key.pem && chmod 600 private_key.pem && ssh -o StrictHostKeyChecking=no -o IdentitiesOnly=yes -i private_key.pem ubuntu@$$(terraform -chdir=./terraform output -raw ec2_public_dns) && rm private_key.pem
