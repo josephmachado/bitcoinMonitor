@@ -1,5 +1,10 @@
-up:
+docker-spin-up:
 	docker compose --env-file env up --build -d
+
+sleeper:
+	sleep 15
+
+up: docker-spin-up sleeper warehouse-migration
 
 down: 
 	docker compose down
@@ -22,7 +27,7 @@ type:
 lint: 
 	docker exec pipelinerunner flake8 /code 
 
-ci: isort format type lint warehouse-migration pytest
+ci: isort format type lint pytest
 
 stop-etl: 
 	docker exec pipelinerunner service cron stop

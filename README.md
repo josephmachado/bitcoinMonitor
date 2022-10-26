@@ -22,6 +22,8 @@ All of the components are running as docker containers.
 
 Read **[this post](https://www.startdataengineering.com/post/data-engineering-projects-with-free-template/)**, for information on setting up CI/CD, DB migrations, IAC(terraform), "make" commands and automated testing.
 
+In your project directory, run these commands.
+
 ```shell
 # Local run & test
 make up # start the docker containers on your computer & runs migrations under ./migrations
