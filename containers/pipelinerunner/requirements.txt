@@ -8,3 +8,4 @@ flake8
 mypy
 types-requests
 isort
+yoyo-migrations==8.0.0
