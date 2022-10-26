@@ -22,9 +22,13 @@ All of the components are running as docker containers.
 
 Read **[this post](https://www.startdataengineering.com/post/data-engineering-projects-with-free-template/)**, for information on setting up CI/CD, DB migrations, IAC(terraform), "make" commands and automated testing.
 
-In your project directory, run these commands.
+Run these commands to setup your project locally and on the cloud.
 
 ```shell
+# Clone the code as shown below.
+git clone https://github.com/josephmachado/bitcoinMonitor.git
+cd bitcoinMonitor
+
 # Local run & test
 make up # start the docker containers on your computer & runs migrations under ./migrations
 make ci # Runs auto formatting, lint checks, & all the test files under ./tests
