@@ -7,7 +7,7 @@ sleeper:
 up: docker-spin-up sleeper warehouse-migration
 
 down: 
-	docker compose down
+	docker compose --env-file env down
 
 shell:
 	docker exec -ti pipelinerunner bash
