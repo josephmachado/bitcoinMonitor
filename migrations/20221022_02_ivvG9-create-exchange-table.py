@@ -15,7 +15,7 @@ steps = [
             name VARCHAR(50),
             rank INT,
             percentTotalVolume NUMERIC(8, 5),
-            volumeUsd NUMERIC,
+            volumeUsd NUMERIC(18, 5),
             tradingPairs INT,
             socket BOOLEAN,
             exchangeUrl VARCHAR(50),
