@@ -29,7 +29,7 @@ services:
       WAREHOUSE_PASSWORD: ${POSTGRES_PASSWORD}
       WAREHOUSE_DB: ${POSTGRES_DB}
       WAREHOUSE_HOST: ${POSTGRES_HOST}
-      WARREHOUSE_PORT: ${POSTGRES_PORT}
+      WAREHOUSE_PORT: ${POSTGRES_PORT}
 
   dashboard:
     image: metabase/metabase
