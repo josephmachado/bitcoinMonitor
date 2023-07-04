@@ -9,7 +9,15 @@ services:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       POSTGRES_DB: ${POSTGRES_DB}
     healthcheck:
-      test: [ "CMD", "pg_isready", "-U", "${POSTGRES_USER}" ]
+      test:
+        [
+          "CMD",
+          "pg_isready",
+          "-d",
+          "${POSTGRES_DB}",
+          "-U",
+          "${POSTGRES_USER}"
+        ]
       interval: 5s
       retries: 5
     restart: always
