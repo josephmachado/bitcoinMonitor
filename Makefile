@@ -4,7 +4,7 @@ docker-spin-up:
 sleeper:
 	sleep 15
 
-up: docker-spin-up sleeper warehouse-migration
+up: docker-spin-up sleeper 
 
 down: 
 	docker compose --env-file env down
@@ -46,18 +46,6 @@ infra-down:
 
 infra-config:
 	terraform -chdir=./terraform output
-
-####################################################################################################################
-# Datawarehouse migration
-
-db-migration:
-	@read -p "Enter migration name:" migration_name; docker exec pipelinerunner yoyo new ./migrations -m "$$migration_name"
-
-warehouse-migration:
-	docker exec pipelinerunner yoyo develop --no-config-file --database postgres://sdeuser:sdepassword1234@warehouse:5432/finance ./migrations
-
-warehouse-rollback:
-	docker exec pipelinerunner yoyo rollback --no-config-file --database postgres://sdeuser:sdepassword1234@warehouse:5432/finance ./migrations
 
 ####################################################################################################################
 # Port forwarding to local machine
