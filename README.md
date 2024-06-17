@@ -1,3 +1,11 @@
+
+
+* [Bitcoin Monitor](#bitcoin-monitor)
+    * [Run Data Pipeline](#run-data-pipeline)
+        * [Run on codespaces](#run-on-codespaces)
+        * [Run locally](#run-locally)
+    * [Architecture](#architecture)
+
 # Bitcoin Monitor
 
 This is an ETL pipeline to pull bitcoin exchange data from [CoinCap API](https://docs.coincap.io/) and load it into our data warehouse. For more details check out the blog at https://startdataengineering.com/post/data-engineering-project-to-impress-hiring-managers/
@@ -14,6 +22,8 @@ You can run this data pipeline using GitHub codespaces. Follow the instructions 
 2. Wait for codespaces to start, then in the terminal type `make up`.
 3. Wait for `make up` to complete, and then wait for 30s (give Metabase sometime to setup).
 4. After 30s go to the `ports` tab and click on the link exposing port `3000` to access Metabase UI (username and password is `sdeuser` and `sdepassword1234` respectively).
+
+**Note**: The screenshots show how to run a project on codespaces, please make sure to use the instructions above for this specific project.
 
 ![codespaces start](./assets/images/cs1.png)
 ![codespaces make up](./assets/images/cs2.png)
