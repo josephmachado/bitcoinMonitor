@@ -23,7 +23,9 @@ class WarehouseConnection:
 
     @contextmanager
     def managed_cursor(self, cursor_factory=None):
-        self.conn = psycopg2.connect(self.conn_url) if self.conn is None else self.conn
+        self.conn = (
+            psycopg2.connect(self.conn_url) if self.conn is None else self.conn
+        )
         self.conn.autocommit = True
         self.curr = self.conn.cursor(cursor_factory=cursor_factory)
         try:
